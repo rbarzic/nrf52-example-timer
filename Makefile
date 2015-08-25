@@ -54,6 +54,10 @@ USE_SOFT_DEVICE=no
 CFLAGS += -DBOARD_PCA10036
 CFLAGS += -DNRF52
 CFLAGS += -DBSP_DEFINES_ONLY
+CFLAGS += -g
+
+
+# LDFLAGS +=  -Wl,-nostartfiles 
 
 # We want to re-route printf strings to the UART, not the debugger
 CFLAGS += -DPRINTF_USES_UART
