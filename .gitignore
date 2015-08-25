@@ -1,0 +1,6 @@
+/.dir-locals.el
+/TAGS
+/main_flymake.d
+/test.bin
+/test.elf
+/test.hex

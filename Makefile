@@ -50,7 +50,7 @@ SDK_INSTALL_DIR=../../nordic
 USE_SOFT_DEVICE=no
 
 
-CFLAGS  = -DCONFIG_GPIO_AS_PINRESET
+#CFLAGS  = -DCONFIG_GPIO_AS_PINRESET
 CFLAGS += -DBOARD_PCA10036
 CFLAGS += -DNRF52
 CFLAGS += -DBSP_DEFINES_ONLY
@@ -67,28 +67,9 @@ SDK_TOOLCHAIN_GCC=yes
 # Support libraries
 SDK_DRIVERS_NRF_HAL=yes
 
-SDK_LIBRARIES_FIFO=yes
-
 SDK_DRIVERS_NRF_CONFIG=yes
 
 SDK_DRIVERS_NRF_COMMON=yes
-
-# Bad SDK organisation - FreeRTOS is included by default...
-#SDK_LIBRARIES_TIMER=yes
-C_SOURCE_FILES += $(SDK_INSTALL_DIR)/$(SDK_VERSION)/components/libraries/timer/app_timer.c
-INC_PATHS += -I $(SDK_INSTALL_DIR)/$(SDK_VERSION)/components/libraries/timer
-
-# Same for UART libraries - it includes two versions of the same API
-# we have to pick the right file
-#SDK_LIBRARIES_UART=yes
-#SDK_DRIVERS_NRF_UART=yes
-
-C_SOURCE_FILES += $(SDK_INSTALL_DIR)/$(SDK_VERSION)/components/libraries/uart/app_uart_fifo.c
-INC_PATHS += -I $(SDK_INSTALL_DIR)/$(SDK_VERSION)/components/libraries/uart
-
-C_SOURCE_FILES += $(SDK_INSTALL_DIR)/$(SDK_VERSION)/components/drivers_nrf/uart/nrf_drv_uart.c
-INC_PATHS += -I $(SDK_INSTALL_DIR)/$(SDK_VERSION)/components/drivers_nrf/uart
-
 
 
 
