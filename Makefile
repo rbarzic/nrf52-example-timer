@@ -49,15 +49,14 @@ SDK_URL=http://developer.nordicsemi.com/nRF52_SDK/nRF52_SDK_v0.x.x/
 SDK_INSTALL_DIR=../../nordic
 USE_SOFT_DEVICE=no
 
+# use special gcc option for debug information
+DEBUG=yes
 
 #CFLAGS  = -DCONFIG_GPIO_AS_PINRESET
 CFLAGS += -DBOARD_PCA10036
 CFLAGS += -DNRF52
 CFLAGS += -DBSP_DEFINES_ONLY
-CFLAGS += -g
 
-
-# LDFLAGS +=  -Wl,-nostartfiles 
 
 # We want to re-route printf strings to the UART, not the debugger
 CFLAGS += -DPRINTF_USES_UART

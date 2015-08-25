@@ -34,16 +34,19 @@ void TIMER0_IRQHandler(void) {
 
 }
 
-int main(void)
-{
+void init_gpio(void) {
     nrf_gpio_cfg_output(PIN_LED);
     nrf_gpio_pin_set(PIN_LED); // LED is off
+}
 
+void init_nvic_irq(void) {
     // Irq setup
     NVIC_SetPriority(TIMER0_IRQn, 15); // Lowes priority
     NVIC_ClearPendingIRQ(TIMER0_IRQn);
     NVIC_EnableIRQ(TIMER0_IRQn);
+}
 
+void setup_timer(void) {
     // Set timer to 32-bit mode
     // using 1MHz clock
     // with compare value 250 000 (channel 0)
@@ -55,7 +58,20 @@ int main(void)
 
     // Make a short between compare and clear
     // This does not work as expected
-    // nrf_timer_shorts_enable(NRF_TIMER0, NRF_TIMER_SHORT_COMPARE0_CLEAR_MASK);
+    // nrf_timer_shorts_enable(NRF_TIMER0, NRF_TIMER_SHORT_COMPARE0_CLEAR_MASK);    
+}
+int main(void)
+{
+    
+    init_gpio();
+    init_nvic_irq();
+    setup_timer();
+
+    for(int i=0;i<50;) {
+        nrf_gpio_pin_toggle(PIN_LED);
+        nrf_delay_ms(100);
+        i++;
+    }
 
     nrf_timer_int_enable(NRF_TIMER0,NRF_TIMER_INT_COMPARE0_MASK );
     nrf_timer_task_trigger(NRF_TIMER0, NRF_TIMER_TASK_START);
@@ -64,4 +80,3 @@ int main(void)
         __WFI();
     };
 }
-g
