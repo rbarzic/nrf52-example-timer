@@ -1,2 +1,6 @@
 # nrf52-example-timer
-nRF52 TIMER example using the nrf5x-dk-gcc flow 
+
+An simple, minimalistic example about using the TIMER0 with interrupt in a nRF52 device
+
+
+see https://github.com/rbarzic/nrf5x-dk-gcc.git for how to use the Makefile based flow
